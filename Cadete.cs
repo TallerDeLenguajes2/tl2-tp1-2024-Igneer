@@ -1,18 +1,21 @@
-class Cliente
+class Cadete
 {
+    private int id;
     private string nombre;
     private string direccion;
     private int telefono;
-    private string DatosReferenciaDireccion;
+    private List<Pedido> ListadoPedidos;
 
+    public int Id { get => id; set => id = value; }
     public string Nombre { get => nombre; set => nombre = value; }
     public string Direccion { get => direccion; set => direccion = value; }
     public int Telefono { get => telefono; set => telefono = value; }
-    public string DatosReferenciaDireccion1 { get => DatosReferenciaDireccion; set => DatosReferenciaDireccion = value; }
-
-    public Cliente()
+    public Cadete()
     {
-        System.Console.WriteLine("Ingrese el nombre del cliente: ");
-        nombre = Console.ReadLine();
+
+    }
+    public Cadete(Pedido pedido)
+    {
+        this.ListadoPedidos.Add(pedido);
     }
 }

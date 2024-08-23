@@ -5,6 +5,9 @@ class Pedido
 
     private Cliente cliente;
 
+    public int Nro { get => nro; set => nro = value; }
+    public string Obs { get => obs; set => obs = value; }
+
     private enum Estado
     {
         EnCurso,
