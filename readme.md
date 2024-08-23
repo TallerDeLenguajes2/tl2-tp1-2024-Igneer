@@ -10,9 +10,10 @@ Los métodos que debería tener la clase Cadetería:
 - CadetesDisponibles().
 Y para la clase Cadete:
 - TomarPedido().
-- PedidosTotales().
-* Teniendo en cuenta los principios de abstracción y ocultamiento, que atributos, propiedades y métodos deberían ser públicos y cuáles privados.
-Por cada clase y metodos:
-
+- FinalizarPedido().
+- PedidosPendientes().
+- PedidosRealizados().
+* Teniendo en cuenta los principios de abstracción y ocultamiento, que campos, propiedades y métodos deberían ser públicos y cuáles privados.
+No sería una buena práctica dejar campos de forma publica por lo que 
 * ¿Cómo diseñaría los constructores de cada una de las clases?
 * ¿Se le ocurre otra forema que podría haberse realizado el diseño de clases?

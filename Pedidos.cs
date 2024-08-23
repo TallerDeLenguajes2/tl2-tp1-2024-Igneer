@@ -1,6 +1,18 @@
-class Pedidos
+class Pedido
 {
     private int nro;
-    public string obs;
-    
+    private string obs;
+
+    private Cliente cliente;
+
+    private enum Estado
+    {
+        EnCurso,
+        Completado
+    }
+
+    public Pedido()
+    {
+        cliente = new Cliente();
+    }
 }
