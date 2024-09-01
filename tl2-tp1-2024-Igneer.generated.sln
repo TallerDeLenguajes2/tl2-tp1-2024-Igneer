@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tl2-tp1-2024-Igneer", "tl2-tp1-2024-Igneer.csproj", "{B1070EC9-8172-4E44-8AF3-63B1ADAD77D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tl2-tp1-2024-Igneer", "tl2-tp1-2024-Igneer.csproj", "{6DD85D23-B9D6-4F3F-8BF3-4237266BD95D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B1070EC9-8172-4E44-8AF3-63B1ADAD77D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1070EC9-8172-4E44-8AF3-63B1ADAD77D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1070EC9-8172-4E44-8AF3-63B1ADAD77D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1070EC9-8172-4E44-8AF3-63B1ADAD77D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD85D23-B9D6-4F3F-8BF3-4237266BD95D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD85D23-B9D6-4F3F-8BF3-4237266BD95D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD85D23-B9D6-4F3F-8BF3-4237266BD95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD85D23-B9D6-4F3F-8BF3-4237266BD95D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
