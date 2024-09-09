@@ -1,3 +1,5 @@
+namespace EspacioCadeteria;
+
 class AccesoAdatos
 {
     public bool existeArchivo(string path)
@@ -19,13 +21,9 @@ class AccesoAdatos
             string lineas= x.ReadLine(); //en esta linea se lee una linea de un arhivo, y comienzo con la primera linea del csv
             while(lineas != null)//Con el while voy iterando linea por linea hasta que llegue a una vacia
             {
-                Cadete cadete = new Cadete();
                 string [] campos = lineas.Split(','); //lineas.Split(',') devuelve un arreglo cuyos campos son cada elemento entre comas
                 int.TryParse(campos[0], out int id);
-                cadete.Id = id;
-                cadete.Nombre = campos[1];
-                cadete.Direccion = campos[2];
-                cadete.Telefono = campos[3];
+                Cadete cadete = new Cadete(id, campos[1], campos[2], campos[3]);
                 cadeteria.agregarCadetes(cadete);
                 lineas = x.ReadLine();
             }

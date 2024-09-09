@@ -1,3 +1,5 @@
+namespace EspacioCadeteria;
+
 class Cliente
 {
     //Campos
@@ -7,26 +9,18 @@ class Cliente
     private string datosReferenciaDireccion;
 
     //Propiedades
-    public string Nombre { get => nombre; set => nombre = value; }
-    public string Direccion { get => direccion; set => direccion = value; }
-    public string Telefono { get => telefono; set => telefono = value; }
-    public string DatosReferenciaDireccion { get => datosReferenciaDireccion; set => datosReferenciaDireccion = value; }
+    public string Nombre { get => nombre; }
+    public string Direccion { get => direccion; }
+    public string Telefono { get => telefono; }
+    public string DatosReferenciaDireccion { get => datosReferenciaDireccion; }
 
     //Metodos 
-
-    public Cliente()
+    public Cliente(string nombre, string direccion, string telefono, string datosReferenciaDireccion)
     {
-        System.Console.WriteLine("----------Carga Del Cliente----------");
-        System.Console.WriteLine("Ingrese el nombre del cliente:");
-        nombre = Console.ReadLine();
-        System.Console.WriteLine("Ingrese la direccion del cliente:");
-        direccion = Console.ReadLine();
-        System.Console.WriteLine("Ingrese el numero del cliente(sin codigo de area):");
-        telefono = Console.ReadLine();
-        System.Console.WriteLine("Ingrese algun dato de referencia de la direccion:");
-        datosReferenciaDireccion = Console.ReadLine();
-        System.Console.WriteLine("-------------------------------------");
-
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.datosReferenciaDireccion = datosReferenciaDireccion;
     }
 
 }

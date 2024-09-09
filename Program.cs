@@ -1,4 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using EspacioCadeteria;
 //Estado conviene más hacerlo enum ya que quizás en un futuro además de realizado y no realizado, quizas agregar en camino no sería posible si asignara bool
 //Hacer un campo publico no esta bien visto, siempre se trabaja con campos y atributos privados, mientras que las propiedades y los metodos pueden ser publicos
 AccesoAdatos datos = new AccesoAdatos();
@@ -8,12 +8,11 @@ datos.cargarCadetes("cadetes.csv", cadeteria);
 datos.cargarCadeteria("cadeteria.csv", cadeteria);
 
 int opcion = 2;
-Pedido pedido = null;
 
 while(opcion <=4  && opcion >= 1)
 {
     System.Console.WriteLine("1 - Dar de alta un pedido");
-    System.Console.WriteLine("2 - Asignar pedido a un cadete");
+    System.Console.WriteLine("2 - Asignar cadete a un pedido");
     System.Console.WriteLine("3 - Cambiar estado de un pedido");
     System.Console.WriteLine("4 - Reasignar pedido a otro cadete");
     System.Console.WriteLine("5 - Salir");
@@ -24,37 +23,95 @@ while(opcion <=4  && opcion >= 1)
     switch(opcion)
     {
         case 1:
-            pedido = new Pedido();
+            darAltaPedido();
             break;
         case 2:
-            int nroCadete;
-            if(pedido != null)
-            {
-                cadeteria.mostrarCadetes();
-                System.Console.WriteLine("Ingrese el id del cadete que asignara el pedido:");
-                int.TryParse(Console.ReadLine(), out nroCadete);
-                cadeteria.ListadoCadetes[nroCadete].agregarPedido(pedido);
-                pedido = null;
-            }else
-            {
-                System.Console.WriteLine("No se dio de alta ningun pedido, no fue posible asignar");
-            }
+            asignarCadeteAPedido();
             break;
         case 3:
-            cadeteria.mostrarCadetes();
-            System.Console.WriteLine("Ingrese el nro de cadete del cual cambiara el estado del pedido:");
-            int.TryParse(Console.ReadLine(), out nroCadete);
-
-            Cadete cadete = cadeteria.ListadoCadetes[nroCadete-1]; 
-            cadete.mostrarPedidos();
-            
-            System.Console.WriteLine("Ingrese el nro del pedido a cambiar:");
-            int.TryParse(Console.ReadLine(), out int nroPedido);
-            pedido = cadete.ListadoPedidos.FirstOrDefault(p => p.Nro == nroPedido);
-            pedido.cambiarEstado();
+            cambiarEstadoPedido();
             break;
         case 4:
-            cadeteria.reasignarPedido();
+            reasignarPedido();
             break;
+    }
+}
+
+void darAltaPedido()
+{
+    System.Console.WriteLine("Ingrese nombre del cliente del pedido: ");
+    string nombre = Console.ReadLine();
+    System.Console.WriteLine("Ingrese direccion del cliente del pedido: ");
+    string direccion = Console.ReadLine();
+    System.Console.WriteLine("Ingrese telefono del cliente del pedido: ");
+    string telefono = Console.ReadLine();
+    System.Console.WriteLine("Ingrese datos de referencia del cliente del pedido: ");
+    string datosRefencia = Console.ReadLine();
+    cadeteria.darAltaPedido(nombre, direccion, telefono, datosRefencia);
+}
+
+void asignarCadeteAPedido()
+{
+    int opcion = 1;
+    while(opcion >= 1 || opcion <=3)
+    {
+        System.Console.WriteLine("0 - Mostrar Cadetes");
+        System.Console.WriteLine("1 - Mostrar Pedidos");
+        System.Console.WriteLine("2 - Asignar Cadete a Pedido");
+    }
+
+    switch(opcion)
+        {
+            case 0:
+                cadeteria.mostrarPedidos();
+                break;
+            case 1:
+                cadeteria.mostrarCadetes();
+                break;
+            case 2:
+                System.Console.WriteLine("Ingresa el numero de pedido al cual va a asignar un cadete: ");
+                int.TryParse(Console.ReadLine(), out int nroPedido);
+                System.Console.WriteLine("Ingresa el numero del cadete: ");
+                int.TryParse(Console.ReadLine(), out int nroCadete);
+                if(cadeteria.asignarCadeteAPedido(nroCadete, nroPedido))
+                {
+                    System.Console.WriteLine("Asignacion exitosa!");
+                }else
+                {
+                    System.Console.WriteLine("No se pudo asignar!");
+                }
+                break;
+            default:
+                break;
+        }    
+}
+
+void cambiarEstadoPedido()
+{
+    cadeteria.mostrarPedidos();
+    System.Console.WriteLine("Ingrese el nro del pedido a cambiar su estado: ");
+    int.TryParse(Console.ReadLine(), out int nroPedido);
+    System.Console.WriteLine("Estados:");
+    System.Console.WriteLine("1 - Completado");
+    System.Console.WriteLine("Ingrese una opcion");
+    int.TryParse(Console.ReadLine(), out int opcion);
+    cadeteria.cambiarEstadoPedido(nroPedido, opcion);
+}
+
+void reasignarPedido()
+{
+    cadeteria.mostrarPedidos();
+    System.Console.WriteLine("Ingrese el nro del pedido a reasignar");
+    int.TryParse(Console.ReadLine(), out int nroPedido);
+    cadeteria.mostrarCadetes();
+    System.Console.WriteLine("Ingrese el nro del cadete a asignar");
+    int.TryParse(Console.ReadLine(), out int nroCadete);
+
+    if(cadeteria.asignarCadeteAPedido(nroCadete, nroPedido))
+    {
+        System.Console.WriteLine("Asignacion exitosa!");
+    }else
+    {
+        System.Console.WriteLine("No se pudo asignar!");
     }
 }

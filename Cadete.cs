@@ -1,3 +1,4 @@
+namespace EspacioCadeteria;
 
 class Cadete
 {
@@ -6,14 +7,11 @@ class Cadete
     private string nombre;
     private string direccion;
     private string telefono;
-    private List<Pedido> listadoPedidos = new List<Pedido>() ;
-
     //Propiedades
-    public int Id { get => id; set => id = value; }
-    public string Nombre { get => nombre; set => nombre = value; }
-    public string Direccion { get => direccion; set => direccion = value; }
-    public string Telefono { get => telefono; set => telefono = value; }
-    internal List<Pedido> ListadoPedidos { get => listadoPedidos; set => listadoPedidos = value; }
+    public int Id { get => id; }
+    public string Nombre { get => nombre; }
+    public string Direccion { get => direccion; }
+    public string Telefono { get => telefono; }
 
     //no agregar metodos sin necesidad, intente hacer una sobrecarga con los constructores
     // public Cadete()
@@ -28,48 +26,16 @@ class Cadete
     // El problema de hacerlo así en el segundo constructor es que estoy obligado a si o si al cadete pasarle un pedido
 
     //Metodos
-    public bool agregarPedido(Pedido pedido)
+    public Cadete(int id, string nombre, string direccion, string telefono)
     {
-        // if(ListadoPedidos.Count <= 4)
-        // {
-            ListadoPedidos.Add(pedido);
-            return true; 
-        // }else
-        // {
-        //     System.Console.WriteLine("El cadete seleccionado no termino los pedidos asignados, seleccione otro");
-        //     return false;
-        // }
+        this.id = id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
     }
-
-    public void mostrarPedidos()
+    public string datosCadete()
     {
-        foreach(Pedido pedido in ListadoPedidos)
-        {
-            pedido.mostrarPedido();
-        }
-    }
-
-    // public void finalizarPedido(int ID)
-    // {
-    //     foreach(var pedido in ListadoPedidos.Where(x => x == ListadoPedidos))
-    //     {
-
-    //     }
-    // }
-
-    public int JornalACobrar()
-    {
-        int total = 0;
-        int precioPedido = 500;
-        foreach(Pedido pedido in ListadoPedidos)
-        {
-            if(pedido.Estado == Pedido.Estados.Completado)
-            {
-                total++;
-            }
-        }
-
-        return total*precioPedido;
+        return $"ID: {id} | Nombre: {nombre} | Direccion: {direccion} | Telefono: {telefono}\n";
     }
 
 }

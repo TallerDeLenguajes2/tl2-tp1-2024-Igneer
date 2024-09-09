@@ -1,3 +1,5 @@
+namespace EspacioCadeteria;
+
 class Pedido
 {
     //Variables
@@ -5,12 +7,14 @@ class Pedido
     private int nro;
     private string obs;
     private Cliente cliente;
+    private Cadete cadete;
     private Estados estado;
 
     //Propiedades
     public int Nro { get => nro; set => nro = value; }
     public string Obs { get => obs; set => obs = value; }
-    public Estados Estado { get => estado; set => estado = value; }
+    public Estados Estado { get => estado; }
+    internal Cadete Cadete { get => cadete; }
 
     //Metodos
     public enum Estados
@@ -18,29 +22,38 @@ class Pedido
         EnCurso,
         Completado
     }
-    public Pedido()
+    public Pedido(string nombre, string direccion, string telefono, string datosReferencia)
     {
-        cliente = new Cliente();
+        cliente = new Cliente(nombre, direccion, telefono, datosReferencia);
         nro = ++contador;
         estado = Estados.EnCurso;
     }
 
-    public void cargarPedido()
+    public void asociarCadete(Cadete cadete)
     {
-        System.Console.WriteLine("Ingrese alguna observacion del pedido:");
-        obs = Console.ReadLine();
+        this.cadete = cadete;
     }
-
-    public void cambiarEstado()
+    public void cambiarEstado(int nro)
     {
-        System.Console.WriteLine("Cambiar a estado:");
-        System.Console.WriteLine("1 - Completado");
-        estado = Estados.Completado;
+        switch (nro)
+        {
+            case 1:
+                estado = Estados.Completado;
+                break;
+            default:
+                break;
+        }
     }
-
-    public void mostrarPedido()
+    public string datosPedido()
     {
-        System.Console.WriteLine($"---------------------------\nPedido {Nro}\nEstado: {Estado}\nObservaciones: {obs}\n---------------------------");
+        string nombreCadete;
+        if(cadete == null)
+        {
+            nombreCadete = "Sin cadete asignado";
+        }else
+        {
+            nombreCadete = cadete.Nombre;
+        }
+        return $"Nro: {nro} | Observaciones: {obs} | Estado: {estado} | Cadete: {nombreCadete}";
     }
-
 }
