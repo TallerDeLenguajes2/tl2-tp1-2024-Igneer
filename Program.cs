@@ -1,4 +1,5 @@
-﻿using EspacioCadeteria;
+﻿using System.Runtime.Intrinsics.Arm;
+using EspacioCadeteria;
 //Estado conviene más hacerlo enum ya que quizás en un futuro además de realizado y no realizado, quizas agregar en camino no sería posible si asignara bool
 //Hacer un campo publico no esta bien visto, siempre se trabaja con campos y atributos privados, mientras que las propiedades y los metodos pueden ser publicos
 AccesoAdatos datos = new AccesoAdatos();
@@ -53,22 +54,22 @@ void darAltaPedido()
 void asignarCadeteAPedido()
 {
     int opcion = 1;
-    while(opcion >= 1 || opcion <=3)
+    while(1 <= opcion || opcion <=3)
     {
-        System.Console.WriteLine("0 - Mostrar Cadetes");
-        System.Console.WriteLine("1 - Mostrar Pedidos");
-        System.Console.WriteLine("2 - Asignar Cadete a Pedido");
-    }
-
-    switch(opcion)
+        System.Console.WriteLine("1 - Mostrar Cadetes");
+        System.Console.WriteLine("2 - Mostrar Pedidos");
+        System.Console.WriteLine("3 - Asignar Cadete a Pedido");
+        System.Console.WriteLine("Ingrese una opcion:");
+        int.TryParse(Console.ReadLine(), out opcion);
+        switch(opcion)
         {
-            case 0:
-                cadeteria.mostrarPedidos();
-                break;
             case 1:
-                cadeteria.mostrarCadetes();
+                System.Console.WriteLine(cadeteria.mostrarCadetes());
                 break;
             case 2:
+                System.Console.WriteLine(cadeteria.mostrarPedidos());
+                break;
+            case 3:
                 System.Console.WriteLine("Ingresa el numero de pedido al cual va a asignar un cadete: ");
                 int.TryParse(Console.ReadLine(), out int nroPedido);
                 System.Console.WriteLine("Ingresa el numero del cadete: ");
@@ -81,9 +82,12 @@ void asignarCadeteAPedido()
                     System.Console.WriteLine("No se pudo asignar!");
                 }
                 break;
+            case 4:
+                break;
             default:
                 break;
         }    
+    }
 }
 
 void cambiarEstadoPedido()
