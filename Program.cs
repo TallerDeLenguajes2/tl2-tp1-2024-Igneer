@@ -1,12 +1,14 @@
-﻿using System.Runtime.Intrinsics.Arm;
-using EspacioCadeteria;
+﻿using EspacioCadeteria;
 //Estado conviene más hacerlo enum ya que quizás en un futuro además de realizado y no realizado, quizas agregar en camino no sería posible si asignara bool
 //Hacer un campo publico no esta bien visto, siempre se trabaja con campos y atributos privados, mientras que las propiedades y los metodos pueden ser publicos
-AccesoAdatos datos = new AccesoAdatos();
+AccesoCSV datos = new AccesoCSV();
 Cadeteria cadeteria = new Cadeteria();
 
-datos.cargarCadetes("cadetes.csv", cadeteria);
-datos.cargarCadeteria("cadeteria.csv", cadeteria);
+string ruta = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Datos\cadeteria.csv");
+string ruta2 = Path.GetFullPath(ruta);
+
+datos.cargarCadetes(ruta2, cadeteria);
+datos.cargarCadeteria(@"Datos\cadeteria.csv", cadeteria);
 
 int opcion = 2;
 
@@ -34,6 +36,8 @@ while(opcion <=4  && opcion >= 1)
             break;
         case 4:
             reasignarPedido();
+            break;
+        default:
             break;
     }
 }

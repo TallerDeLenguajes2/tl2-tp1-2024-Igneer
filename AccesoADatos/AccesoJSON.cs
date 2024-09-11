@@ -1,19 +1,8 @@
-namespace EspacioCadeteria;
+using EspacioCadeteria;
 
-class AccesoAdatos
+class AccesoJSON : AccesoAdatos
 {
-    public bool existeArchivo(string path)
-    {
-        FileInfo file = new FileInfo(path); //crep un objeto archivo y path es la ruta donde esta el archivo
-        if(file.Exists && file.Length > 0)
-        {
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public void cargarCadetes(string path, Cadeteria cadeteria)
+    public override void cargarCadetes(string path, Cadeteria cadeteria)
     {
         if(existeArchivo(path))
         {
@@ -30,7 +19,7 @@ class AccesoAdatos
         }
     }
 
-    public void cargarCadeteria(string path, Cadeteria cadeteria)
+    public override void cargarCadeteria(string path, Cadeteria cadeteria)
     {
         if(existeArchivo(path))
         {
@@ -42,6 +31,4 @@ class AccesoAdatos
             cadeteria.Telefono = telefono;
         }
     }
-    
-
 }
