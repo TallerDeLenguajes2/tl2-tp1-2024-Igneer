@@ -2,9 +2,14 @@ namespace EspacioCadeteria;
 
 class AccesoAdatos
 {
-    public virtual string obtenerRutaDatos()
+    public virtual string obtenerRutaDatosCadeteria()
     {
-        
+        return "";
+    }
+
+    public virtual string obtenerRutaDatosCadete()
+    {
+        return "";
     }
     public bool existeArchivo(string path)
     {
@@ -18,14 +23,14 @@ class AccesoAdatos
     }
 
 
-    public virtual void cargarCadetes(string path, Cadeteria cadeteria)
+    public virtual List<Cadete> cargarCadetes(string path)
     {
-        
+        return new List<Cadete>();
     }
 
-    public virtual void cargarCadeteria(string path, Cadeteria cadeteria)
+    public virtual Cadeteria cargarCadeteria(string path)
     {
-       
+       return new Cadeteria();
     }
     
 }

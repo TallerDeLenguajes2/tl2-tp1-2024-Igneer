@@ -1,14 +1,11 @@
 ﻿using EspacioCadeteria;
 //Estado conviene más hacerlo enum ya que quizás en un futuro además de realizado y no realizado, quizas agregar en camino no sería posible si asignara bool
 //Hacer un campo publico no esta bien visto, siempre se trabaja con campos y atributos privados, mientras que las propiedades y los metodos pueden ser publicos
-AccesoCSV datos = new AccesoCSV();
 Cadeteria cadeteria = new Cadeteria();
 
-string ruta = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\Datos\cadeteria.csv");
-string ruta2 = Path.GetFullPath(ruta);
+cadeteria = cargaDeDatos();
 
-datos.cargarCadetes(ruta2, cadeteria);
-datos.cargarCadeteria(@"Datos\cadeteria.csv", cadeteria);
+System.Console.WriteLine();
 
 int opcion = 2;
 
@@ -122,4 +119,32 @@ void reasignarPedido()
     {
         System.Console.WriteLine("No se pudo asignar!");
     }
+}
+
+Cadeteria cargaDeDatos()
+{
+    Cadeteria cadeteria = new Cadeteria();
+    int opcion;
+    System.Console.WriteLine("1- Carga con archivo CSV");
+    System.Console.WriteLine("2- Carga con archivo JSON");
+    System.Console.WriteLine("Ingrese una opcion: ");
+    int.TryParse(Console.ReadLine(), out opcion);
+    switch(opcion)
+    {
+        case 1:
+            AccesoCSV datosCSV = new AccesoCSV();
+            cadeteria = datosCSV.cargarCadeteria(datosCSV.obtenerRutaDatosCadeteria());
+            cadeteria.agregarListadoCadetes(datosCSV.cargarCadetes(datosCSV.obtenerRutaDatosCadete()));
+
+            break;
+        case 2:
+            AccesoJSON datosJSON = new AccesoJSON();
+            cadeteria = datosJSON.cargarCadeteria(datosJSON.obtenerRutaDatosCadeteria());
+            cadeteria.agregarListadoCadetes(datosJSON.cargarCadetes(datosJSON.obtenerRutaDatosCadete()));
+            break;
+        default:
+            break;
+    }
+    
+    return cadeteria;
 }

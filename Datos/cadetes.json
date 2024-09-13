@@ -1,0 +1,20 @@
+[
+    {
+        "Id": 1,
+        "Nombre": "Andres",
+        "Direccion": "San Lorenzo 4000",
+        "Telefono": "3818357816"
+    },
+    {
+        "Id": 2,
+        "Nombre": "Pepe",
+        "Direccion": "Avenida SiempreViva 300",
+        "Telefono": "3817564987"
+    },
+    {
+        "Id": 3,
+        "Nombre": "Juan",
+        "Direccion": "Barrio Pobreza 900",
+        "Telefono": "3815890204"
+    }
+]

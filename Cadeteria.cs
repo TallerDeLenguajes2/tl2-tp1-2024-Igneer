@@ -1,24 +1,49 @@
 using System.Security.Cryptography.X509Certificates;
 namespace EspacioCadeteria;
+using System.Text.Json.Serialization;
+
 class Cadeteria
 {
+    [JsonPropertyName("nombre")]
     private string nombre;
-    private int telefono;
+    
+    [JsonPropertyName("telefono")]
+    private string telefono;
     private List<Cadete> listadoCadetes = new List<Cadete>();
     private List<Pedido> listadoPedidos  = new List<Pedido>();
+
+    [JsonPropertyName ("nombre")]
     public string Nombre { get => nombre; set => nombre = value; }
-    public int Telefono { get => telefono; set => telefono = value; }
-    public void agregarCadetes(Cadete cadete)
+    
+    [JsonPropertyName ("telefono")]
+    public string Telefono { get => telefono; set => telefono = value; }
+    
+    public Cadeteria()
     {
+
+    }
+
+    public Cadeteria(string nombre, string telefono)
+    {
+        this.nombre = nombre;
+        this.telefono = telefono;
+    }
+    public void agregarCadetes(int id, string nombre, string direccion, string telefono)
+    {
+        Cadete cadete = new Cadete(id, nombre, direccion, telefono);
         listadoCadetes.Add(cadete);
     }
 
+    public void agregarListadoCadetes(List<Cadete> listado)
+    {
+        listadoCadetes = listado;
+    }
     public int JornalACobrar(int idCadete)
     {
         int contador = 0;
         var nroPedidos = from p in listadoPedidos where p.Cadete.Id == idCadete && p.Estado == Pedido.Estados.Completado select p;
         foreach (Pedido p in nroPedidos)
-        {
+        { 
             contador++;
         }
         
